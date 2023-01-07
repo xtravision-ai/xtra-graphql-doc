@@ -1,0 +1,71 @@
+# https://github.com/anvilco/spectaql/blob/main/config-example.yml
+
+spectaql:
+  logoFile: ./logo/logo.png
+  faviconFile: ./logo/favicon.png
+  displayAllServers: true
+
+introspection:
+  url:  http://localhost:4000/api/v1/graphql
+
+extensions:
+  graphqlScalarExamples: true
+
+info:
+  # x-hideWelcome: false
+  # x-hideIntroItems: true
+  contact:
+    name: API Support
+    url: https://www.xtravision.ai/
+    email: info@xtraininglive.com
+  # license:
+  #   name: Apache 2.0
+  #   url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+  x-hidePoweredBy: true
+  termsOfService: https://www.xtravision.ai/masteragreement/
+
+  version: v1
+  title: XtraVision GraphQL API Reference
+  # This is non-standard and optional. If omitted, will use "title". Also only relevant
+  # when building non-embedded.
+  x-htmlTitle: XtraVision API Reference
+  description: >
+            GraphQL (https://graphql.org/) is a query language for APIs. GraphQL allows you to specify exactly what data you need from APIs.  
+
+
+            **How do I use XtraVision's GraphQL API?**  
+
+            To begin, connect to Xtra Team and obtain credentials, including an organization-id, an application-id, and the application's secret key. Once you have this, follow our instructions to create an authentication token, and you can start querying the API. 
+  
+  x-introItems:
+    # Can be a Title (for the Nav panel) + description (for the Content panel)
+    - title: AuthToken
+      description:  >
+            Auth token for new user registration. (Use by Client Server and Xtra Server Communication)
+              ```javascript
+                const payload = { 
+                  appId: appId, 
+                  orgId: orgId,
+                };  
+                const authToken = jwt.sign(payload, appSecret, { expiresIn: '2h' });
+              ```
+
+              Auth token for retrieving users’ data and communicating between Client-App and Xtra Server
+              ```javascript
+                const payload = { 
+                  appId: appId, 
+                  orgId: orgId,
+                  userId: userId, 
+                };  
+                // 2h => 2 hours, 30d => 30 days, 1y => 1 year, 
+                const authToken = jwt.sign(payload, appSecret, { expiresIn: '2h' });
+              ```
+servers:
+  - url: https://saasapi.xtravision.ai/api/v1/graphql
+    description: Production
+    production: true
+    headers:
+      - name: Authorization
+        example: Bearer <YOUR_TOKEN_HERE>
+        comment: JWT token put here

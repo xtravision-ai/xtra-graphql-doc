@@ -1,0 +1,24 @@
+{
+  "name": "xtra-graphql-doc",
+  "version": "1.0.0",
+  "description": "list down all XTRA GraphQL SAAS API",
+  "main": "./src/generateDoc.ts",
+  "typings": "./bin/generateDoc.ts",
+
+  "author": "@mManishTrivedi",
+  "license": "MIT",
+  "dependencies": {
+    "spectaql": "^2.0.3",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "@types/node": "^18.11.18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn build && node ./bin/generateDoc.js",
+    "start:dev": "ts-node ./src/generateDoc.ts"
+  }
+  
+}

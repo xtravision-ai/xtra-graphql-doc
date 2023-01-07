@@ -1,0 +1,845 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/favicon.png" sizes="32x32">
+    <title>XtraVision API Reference</title>
+    <link rel="stylesheet" href="stylesheets/spectaql.min.css" />
+    <script src="javascripts/spectaql.min.js"></script>
+  </head>
+  <body id="spectaql">
+    <div id="page" class="drawer-layout">
+      <div id="sidebar">
+        <div class="sidebar-top-container">
+          <div id="logo">
+            <img src="images/logo.png" title="XtraVision GraphQL API Reference" />
+          </div>
+          <button class="close-button" type="button">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Close menu</span>
+          </button>
+        </div>
+        <nav id="nav" role="navigation">
+          <div class="nav-group">
+            <h4 class="nav-group-title">Introduction</h4>
+            <ul class="nav-group-items">
+              <li><a href="#introduction">Welcome</a></li>
+              <li><a href="#introduction-item-0">AuthToken</a></li>
+            </ul>
+          </div>
+          <div class="nav-group">
+            <h4 class="nav-group-title">Operations</h4>
+            <ul class="nav-group-items">
+              <li class="nav-group-section">
+                <h5 class="nav-group-section-title">
+                  <a href="#group-Operations-Queries">Queries</a>
+                </h5>
+                <ul class="nav-group-section-items">
+                  <li><a href="#query-getUserAssessmentResults">getUserAssessmentResults</a></li>
+                </ul>
+              </li>
+              <li class="nav-group-section">
+                <h5 class="nav-group-section-title">
+                  <a href="#group-Operations-Mutations">Mutations</a>
+                </h5>
+                <ul class="nav-group-section-items">
+                  <li><a href="#mutation-createUserSession">createUserSession</a></li>
+                  <li><a href="#mutation-registerUser">registerUser</a></li>
+                </ul>
+              </li>
+              <li><a href="#"></a></li>
+            </ul>
+          </div>
+          <div class="nav-group">
+            <h4 class="nav-group-title">Types</h4>
+            <ul class="nav-group-items">
+              <li><a href="#definition-Boolean">Boolean</a></li>
+              <li><a href="#definition-Date">Date</a></li>
+              <li><a href="#definition-DateTime">DateTime</a></li>
+              <li><a href="#definition-IdentifyOrgAppUserResp">IdentifyOrgAppUserResp</a></li>
+              <li><a href="#definition-Int">Int</a></li>
+              <li><a href="#definition-JSON">JSON</a></li>
+              <li><a href="#definition-String">String</a></li>
+              <li><a href="#definition-UserAssessment">UserAssessment</a></li>
+              <li><a href="#definition-UserAssessmentResponse">UserAssessmentResponse</a></li>
+              <li><a href="#definition-UserSession">UserSession</a></li>
+              <li><a href="#definition-userAssessmentFilter">userAssessmentFilter</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div id="docs">
+        <div id="mobile-navbar">
+          <button class="sidebar-open-button" type="button">
+            <span class="hamburger"></span>
+            <span class="sr-only">All topics</span>
+          </button>
+        </div>
+        <article id="content">
+          <h1 class="doc-heading">XtraVision GraphQL API Reference</h1>
+          <div id="introduction" data-traverse-target="introduction">
+            <div id="welcome" class="doc-row">
+              <div class="doc-copy">
+                <p>GraphQL (<a href="https://graphql.org/">https://graphql.org/</a>) is a query language for APIs. GraphQL allows you to specify exactly what data you need from APIs. </p>
+                <p><strong>How do I use XtraVision&#39;s GraphQL API?</strong><br>To begin, connect to Xtra Team and obtain credentials, including an organization-id, an application-id, and the application&#39;s secret key. Once you have this, follow our instructions to create an authentication token, and you can start querying the API. </p>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section welcome-contact-section">
+                  <h5>Contact</h5>
+                  <p class="contact-name">API Support</p>
+                  <p class="contact-email"><a href="mailto:info@xtraininglive.com">info@xtraininglive.com</a></p>
+                </div>
+                <div class="example-section welcome-tos-section">
+                  <h5>Terms of Service</h5>
+                  <p><a href="https://www.xtravision.ai/masteragreement/">https://www.xtravision.ai/masteragreement/</a></p>
+                </div>
+                <div class="example-section welcome-api-endpoints-section example-section-is-code">
+                  <h5>API Endpoints</h5>
+                  <pre><code># Production:
+https://saasapi.xtravision.ai/api/v1/graphql
+</code></pre>
+                </div>
+                <div class="example-section welcome-api-endpoints-section example-section-is-code">
+                  <h5>Headers</h5>
+                  <pre><code># JWT token put here
+Authorization: Bearer &lt;YOUR_TOKEN_HERE&gt;</code></pre>
+                </div>
+                <div class="example-section welcome-version-section">
+                  <h5>Version</h5>
+                  <p>v1</p>
+                </div>
+              </div>
+            </div>
+            <div id="introduction-item-0" class="introduction-item" data-traverse-target="introduction-item-0">
+              <h2 class="introduction-item-title">AuthToken</h2>
+              <div class="doc-row">
+                <div class="doc-copy">
+                  <p>Auth token for new user registration. (Use by Client Server and Xtra Server Communication)</p>
+                  <pre><code class="hljs language-javascript">  <span class="hljs-keyword">const</span> payload = { 
+    <span class="hljs-attr">appId</span>: appId, 
+    <span class="hljs-attr">orgId</span>: orgId,
+  };  
+  <span class="hljs-keyword">const</span> authToken = jwt.<span class="hljs-title function_">sign</span>(payload, appSecret, { <span class="hljs-attr">expiresIn</span>: <span class="hljs-string">&#x27;2h&#x27;</span> });
+</code></pre>
+                  <p> Auth token for retrieving users’ data and communicating between Client-App and Xtra Server</p>
+                  <pre><code class="hljs language-javascript">  <span class="hljs-keyword">const</span> payload = { 
+    <span class="hljs-attr">appId</span>: appId, 
+    <span class="hljs-attr">orgId</span>: orgId,
+    <span class="hljs-attr">userId</span>: userId, 
+  };  
+  <span class="hljs-comment">// 2h =&gt; 2 hours, 30d =&gt; 30 days, 1y =&gt; 1 year, </span>
+  <span class="hljs-keyword">const</span> authToken = jwt.<span class="hljs-title function_">sign</span>(payload, appSecret, { <span class="hljs-attr">expiresIn</span>: <span class="hljs-string">&#x27;2h&#x27;</span> });
+</code></pre>
+                </div>
+                <div class="doc-examples">
+                </div>
+              </div>
+            </div>
+          </div>
+          <h1 id="group-Operations-Queries" class="group-heading" data-traverse-target="group-Operations-Queries">Queries</h1>
+          <section id="query-getUserAssessmentResults" class="operation operation-query" data-traverse-target="query-getUserAssessmentResults">
+            <h2 class="operation-heading ">
+              <code>getUserAssessmentResults</code>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="operation-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>Fetch specific user&#39;s old stats.</p>
+                </div>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="operation-response doc-copy-section">
+                  <h5>Response</h5>
+                  <p> Returns a <a href="#definition-UserAssessmentResponse"><code>UserAssessmentResponse</code></a>
+                  </p>
+                </div>
+                <div class="operation-arguments doc-copy-section">
+                  <h5>Arguments</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>userAssessmentFilter</code></span> - <span class="property-type"><a href="#definition-userAssessmentFilter"><code>userAssessmentFilter!</code></a></span>
+                        </td>
+                        <td> Specific filter options like get specific session data, start/end date etc. </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>offset</code></span> - <span class="property-type"><a href="#definition-Int"><code>Int</code></a></span>
+                        </td>
+                        <td> Limit start from. </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>limit</code></span> - <span class="property-type"><a href="#definition-Int"><code>Int</code></a></span>
+                        </td>
+                        <td> Total records in result </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <h4 class="example-heading">Example</h4>
+                <div class="example-section example-section-is-code operation-query-example">
+                  <h5>Query</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> getUserAssessmentResults<span class="hljs-tag">(
+  <span class="hljs-code">$userAssessmentFilter</span>: userAssessmentFilter!,
+  <span class="hljs-code">$offset</span>:<span class="hljs-type"> Int,</span>
+  <span class="hljs-code">$limit</span>:<span class="hljs-type"> Int
+</span>)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">getUserAssessmentResults<span class="hljs-tag">(
+    userAssessmentFilter: <span class="hljs-code">$userAssessmentFilter</span>,
+    offset: <span class="hljs-code">$offset</span>,
+    limit: <span class="hljs-code">$limit</span>
+  )</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">total</span>
+    <span class="hljs-symbol">userAssessmentResult <span class="hljs-tag">{
+      <span class="hljs-type">...UserAssessmentFragment</span>
+    }</span></span>
+  }</span></span>
+}</span></span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+                <div class="example-section example-section-is-code operation-variables-example">
+                  <h5>Variables</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"userAssessmentFilter"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">userAssessmentFilter</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"offset"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"limit"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+                <div class="example-section example-section-is-code operation-response-example">
+                  <h5>Response</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"getUserAssessmentResults"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"total"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"userAssessmentResult"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">UserAssessment</span><span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h1 id="group-Operations-Mutations" class="group-heading" data-traverse-target="group-Operations-Mutations">Mutations</h1>
+          <section id="mutation-createUserSession" class="operation operation-mutation" data-traverse-target="mutation-createUserSession">
+            <h2 class="operation-heading ">
+              <code>createUserSession</code>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="operation-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>Create session and get session-id before starting assessment session.</p>
+                </div>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="operation-response doc-copy-section">
+                  <h5>Response</h5>
+                  <p> Returns a <a href="#definition-UserSession"><code>UserSession</code></a>
+                  </p>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <h4 class="example-heading">Example</h4>
+                <div class="example-section example-section-is-code operation-query-example">
+                  <h5>Query</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> createUserSession <span class="hljs-tag">{
+  <span class="hljs-symbol">createUserSession <span class="hljs-tag">{
+    <span class="hljs-symbol">id</span>
+    <span class="hljs-symbol">userId</span>
+    <span class="hljs-symbol">createdAt</span>
+  }</span></span>
+}</span></span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+                <div class="example-section example-section-is-code operation-response-example">
+                  <h5>Response</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"createUserSession"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"userId"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"createdAt"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="mutation-registerUser" class="operation operation-mutation" data-traverse-target="mutation-registerUser">
+            <div class="operation-group-name">
+              <a href="#group-Operations-Mutations">Mutations</a>
+            </div>
+            <h2 class="operation-heading ">
+              <code>registerUser</code>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="operation-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>Using this API, you will register your user on Xtra Server. This is important and first API for user registration. If user&#39;s is already register, still you can call this API.</p>
+                </div>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="operation-response doc-copy-section">
+                  <h5>Response</h5>
+                  <p> Returns an <a href="#definition-IdentifyOrgAppUserResp"><code>IdentifyOrgAppUserResp</code></a>
+                  </p>
+                </div>
+                <div class="operation-arguments doc-copy-section">
+                  <h5>Arguments</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>firstName</code></span> - <span class="property-type"><a href="#definition-String"><code>String</code></a></span>
+                        </td>
+                        <td> User's First Name. </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>lastName</code></span> - <span class="property-type"><a href="#definition-String"><code>String</code></a></span>
+                        </td>
+                        <td> User's Last Name. </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>email</code></span> - <span class="property-type"><a href="#definition-String"><code>String!</code></a></span>
+                        </td>
+                        <td> User's email-id. </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <h4 class="example-heading">Example</h4>
+                <div class="example-section example-section-is-code operation-query-example">
+                  <h5>Query</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">mutation</span> registerUser<span class="hljs-tag">(
+  <span class="hljs-code">$firstName</span>:<span class="hljs-type"> String,</span>
+  <span class="hljs-code">$lastName</span>:<span class="hljs-type"> String,</span>
+  <span class="hljs-code">$email</span>:<span class="hljs-type"> String!</span>
+)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">registerUser<span class="hljs-tag">(
+    firstName: <span class="hljs-code">$firstName</span>,
+    lastName: <span class="hljs-code">$lastName</span>,
+    email: <span class="hljs-code">$email</span>
+  )</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">id</span>
+    <span class="hljs-symbol">firstName</span>
+    <span class="hljs-symbol">lastName</span>
+    <span class="hljs-symbol">email</span>
+    <span class="hljs-symbol">createdAt</span>
+  }</span></span>
+}</span></span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+                <div class="example-section example-section-is-code operation-variables-example">
+                  <h5>Variables</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"firstName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"lastName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"email"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+                <div class="example-section example-section-is-code operation-response-example">
+                  <h5>Response</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"registerUser"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"firstName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"lastName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"email"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"createdAt"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <h1 id="group-Types" class="group-heading" data-traverse-target="group-Types">Types</h1>
+          <section id="definition-Boolean" class="definition definition-scalar" data-traverse-target="definition-Boolean">
+            <h2 class="definition-heading">Boolean</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>The <code>Boolean</code> scalar type represents <code>true</code> or <code>false</code>.</p>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-Date" class="definition definition-scalar" data-traverse-target="definition-Date">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">Date</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-gql"><span class="hljs-symbol">"2007-12-03"</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-DateTime" class="definition definition-scalar" data-traverse-target="definition-DateTime">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">DateTime</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>Date custom scalar type</p>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-gql"><span class="hljs-symbol">"2007-12-03T10:15:30Z"</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-IdentifyOrgAppUserResp" class="definition definition-object" data-traverse-target="definition-IdentifyOrgAppUserResp">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">IdentifyOrgAppUserResp</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>id</code></span> - <span class="property-type"><a href="#definition-String"><code>String!</code></a></span>
+                        </td>
+                        <td> User id </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>firstName</code></span> - <span class="property-type"><a href="#definition-String"><code>String</code></a></span>
+                        </td>
+                        <td> User's first name. </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>lastName</code></span> - <span class="property-type"><a href="#definition-String"><code>String</code></a></span>
+                        </td>
+                        <td> User's last name. </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>email</code></span> - <span class="property-type"><a href="#definition-String"><code>String</code></a></span>
+                        </td>
+                        <td> User's email. </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>createdAt</code></span> - <span class="property-type"><a href="#definition-Date"><code>Date</code></a></span>
+                        </td>
+                        <td> User's registration date </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"firstName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"lastName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"email"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"createdAt"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-Int" class="definition definition-scalar" data-traverse-target="definition-Int">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">Int</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>The <code>Int</code> scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.</p>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-number">987</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-JSON" class="definition definition-scalar" data-traverse-target="definition-JSON">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">JSON</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>The <code>JSON</code> scalar type represents JSON values as specified by <a href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf">ECMA-404</a>.</p>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-String" class="definition definition-scalar" data-traverse-target="definition-String">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">String</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>The <code>String</code> scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.</p>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-gql"><span class="hljs-symbol">"abc123"</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-UserAssessment" class="definition definition-object" data-traverse-target="definition-UserAssessment">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">UserAssessment</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>id</code></span> - <span class="property-type"><a href="#definition-String"><code>String!</code></a></span>
+                        </td>
+                        <td>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>results</code></span> - <span class="property-type"><a href="#definition-JSON"><code>JSON</code></a></span>
+                        </td>
+                        <td> Concluded response of user's assessment. It's last response from Websocket-communication. </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>savedDate</code></span> - <span class="property-type"><a href="#definition-DateTime"><code>DateTime</code></a></span>
+                        </td>
+                        <td> Date when assessment is stored </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>assessmentName</code></span> - <span class="property-type"><a href="#definition-String"><code>String</code></a></span>
+                        </td>
+                        <td> Assessment name </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"results"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"savedDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"assessmentName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-UserAssessmentResponse" class="definition definition-object" data-traverse-target="definition-UserAssessmentResponse">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">UserAssessmentResponse</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>total</code></span> - <span class="property-type"><a href="#definition-Int"><code>Int!</code></a></span>
+                        </td>
+                        <td> Total count of result as per requested filter </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>userAssessmentResult</code></span> - <span class="property-type"><a href="#definition-UserAssessment"><code>[UserAssessment]!</code></a></span>
+                        </td>
+                        <td>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"total"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"userAssessmentResult"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">UserAssessment</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-UserSession" class="definition definition-object" data-traverse-target="definition-UserSession">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">UserSession</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>id</code></span> - <span class="property-type"><a href="#definition-String"><code>String!</code></a></span>
+                        </td>
+                        <td> Session Id </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>userId</code></span> - <span class="property-type"><a href="#definition-String"><code>String!</code></a></span>
+                        </td>
+                        <td> User-id </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>createdAt</code></span> - <span class="property-type"><a href="#definition-Date"><code>Date!</code></a></span>
+                        </td>
+                        <td> Session creation date </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"userId"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"createdAt"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-userAssessmentFilter" class="definition definition-input-object" data-traverse-target="definition-userAssessmentFilter">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">userAssessmentFilter</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Input Field</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>startDate</code></span> - <span class="property-type"><a href="#definition-DateTime"><code>DateTime!</code></a></span>
+                        </td>
+                        <td> From Date </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>endDate</code></span> - <span class="property-type"><a href="#definition-DateTime"><code>DateTime!</code></a></span>
+                        </td>
+                        <td> To Date </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"startDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"endDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+        </article>
+        <div class="drawer-overlay"></div>
+      </div>
+    </div>
+  </body>
+</html>
