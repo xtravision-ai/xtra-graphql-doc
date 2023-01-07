@@ -9,7 +9,7 @@ import { resolve } from 'path';
 const spectaqlOptions = {
    specFile: resolve('./src/config.yml'),
    resolveWithOutput: true,
-   targetDir:  resolve('./generated-doc/'),
+   targetDir:  resolve('./docs/'),
    logoFile: resolve("./src/logo/logo.png"),
    faviconFile: resolve("./src/logo/favicon.png"),
 }
