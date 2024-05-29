@@ -36,6 +36,7 @@
                   <a href="#group-Operations-Queries">Queries</a>
                 </h5>
                 <ul class="nav-group-section-items">
+                  <li><a href="#query-getScreenerChatHistory">getScreenerChatHistory</a></li>
                   <li><a href="#query-getUserAssessmentResults">getUserAssessmentResults</a></li>
                 </ul>
               </li>
@@ -60,6 +61,10 @@
               <li><a href="#definition-IdentifyOrgAppUserResp">IdentifyOrgAppUserResp</a></li>
               <li><a href="#definition-Int">Int</a></li>
               <li><a href="#definition-JSON">JSON</a></li>
+              <li><a href="#definition-ScreenerChat">ScreenerChat</a></li>
+              <li><a href="#definition-ScreenerChatFilter">ScreenerChatFilter</a></li>
+              <li><a href="#definition-ScreenerChatHistory">ScreenerChatHistory</a></li>
+              <li><a href="#definition-SortDirection">SortDirection</a></li>
               <li><a href="#definition-String">String</a></li>
               <li><a href="#definition-UserAssessment">UserAssessment</a></li>
               <li><a href="#definition-UserAssessmentResponse">UserAssessmentResponse</a></li>
@@ -138,7 +143,133 @@ Authorization: Bearer &lt;YOUR_TOKEN_HERE&gt;</code></pre>
             </div>
           </div>
           <h1 id="group-Operations-Queries" class="group-heading" data-traverse-target="group-Operations-Queries">Queries</h1>
+          <section id="query-getScreenerChatHistory" class="operation operation-query" data-traverse-target="query-getScreenerChatHistory">
+           
+            <h2 class="operation-heading ">
+              <code>getScreenerChatHistory</code>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="operation-description doc-copy-section">
+                  <h5>Description</h5>
+                  <p>Fetch specific user&#39;s chat History.</p>
+                </div>
+                <div class="operation-response doc-copy-section">
+                  <h5>Response</h5>
+                  <p> Returns a <a href="#definition-ScreenerChatHistory"><code>ScreenerChatHistory</code></a>
+                  </p>
+                </div>
+                <div class="operation-arguments doc-copy-section">
+                  <h5>Arguments</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>filter</code></span> - <span class="property-type"><a href="#definition-ScreenerChatFilter"><code>ScreenerChatFilter</code></a></span>
+                        </td>
+                        <td>
+                          Specific filter options like ID, start and end date.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>offset</code></span> - <span class="property-type"><a href="#definition-Int"><code>Int</code></a></span>
+                        </td>
+                        <td>
+                          Limit start from.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>limit</code></span> - <span class="property-type"><a href="#definition-Int"><code>Int</code></a></span>
+                        </td>
+                        <td>
+                          Total records in result
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>order</code></span> - <span class="property-type"><a href="#definition-SortDirection"><code>SortDirection</code></a></span>
+                        </td>
+                        <td>
+                          can be ASC or  DESC, default will be ASC
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <h4 class="example-heading">Example</h4>
+                <div class="example-section example-section-is-code operation-query-example">
+                  <h5>Query</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> getScreenerChatHistory<span class="hljs-tag">(
+  <span class="hljs-code">$filter</span>:<span class="hljs-type"> ScreenerChatFilter,</span>
+  <span class="hljs-code">$offset</span>:<span class="hljs-type"> Int,</span>
+  <span class="hljs-code">$limit</span>:<span class="hljs-type"> Int,</span>
+  <span class="hljs-code">$order</span>:<span class="hljs-type"> SortDirection
+</span>)</span> <span class="hljs-tag">{
+  <span class="hljs-symbol">getScreenerChatHistory<span class="hljs-tag">(
+    filter: <span class="hljs-code">$filter</span>,
+    offset: <span class="hljs-code">$offset</span>,
+    limit: <span class="hljs-code">$limit</span>,
+    order: <span class="hljs-code">$order</span>
+  )</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">total</span>
+    <span class="hljs-symbol">screenerChatHistory <span class="hljs-tag">{
+      <span class="hljs-type">...ScreenerChatFragment</span>
+    }</span></span>
+  }</span></span>
+}</span></span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+                <div class="example-section example-section-is-code operation-variables-example">
+                  <h5>Variables</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"filter"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">ScreenerChatFilter</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"offset"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"limit"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"order"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"ASC"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+                <div class="example-section example-section-is-code operation-response-example">
+                  <h5>Response</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"getScreenerChatHistory"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">"total"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">987</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">"screenerChatHistory"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">ScreenerChat</span><span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
           <section id="query-getUserAssessmentResults" class="operation operation-query" data-traverse-target="query-getUserAssessmentResults">
+            <div class="operation-group-name">
+              <a href="#group-Operations-Queries">Queries</a>
+            </div>
             <h2 class="operation-heading ">
               <code>getUserAssessmentResults</code>
             </h2>
@@ -355,6 +486,20 @@ Authorization: Bearer &lt;YOUR_TOKEN_HERE&gt;</code></pre>
                         </td>
                         <td> User's email-id. </td>
                       </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>profileData</code></span> - <span class="property-type"><a href="#definition-JSON"><code>JSON</code></a></span>
+                        </td>
+                        <td>
+                          User's additional data
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>timezone</code></span> - <span class="property-type"><a href="#definition-String"><code>String</code></a></span>
+                        </td>
+                        <td>
+                          User's Timezone.
+                        </td>
+                      </tr> 
                     </tbody>
                   </table>
                 </div>
@@ -369,11 +514,15 @@ Authorization: Bearer &lt;YOUR_TOKEN_HERE&gt;</code></pre>
   <span class="hljs-code">$firstName</span>:<span class="hljs-type"> String,</span>
   <span class="hljs-code">$lastName</span>:<span class="hljs-type"> String,</span>
   <span class="hljs-code">$email</span>:<span class="hljs-type"> String!</span>
+  <span class="hljs-code">$profileData</span>:<span class="hljs-type"> JSON</span>
+  <span class="hljs-code">$timezone</span>:<span class="hljs-type"> String</span>
 )</span> <span class="hljs-tag">{
   <span class="hljs-symbol">registerUser<span class="hljs-tag">(
     firstName: <span class="hljs-code">$firstName</span>,
     lastName: <span class="hljs-code">$lastName</span>,
     email: <span class="hljs-code">$email</span>
+    profileData: <span class="hljs-code">$profileData</span>,
+    timezone: <span class="hljs-code">$timezone</span>,
   )</span> <span class="hljs-tag">{
     <span class="hljs-symbol">id</span>
     <span class="hljs-symbol">firstName</span>
@@ -394,6 +543,8 @@ Authorization: Bearer &lt;YOUR_TOKEN_HERE&gt;</code></pre>
   <span class="hljs-attr">"firstName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"lastName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"email"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
+  <span class="hljs-attr">"profileData"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"timezone"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"America/New_York"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
                     </body>
@@ -605,6 +756,228 @@ Authorization: Bearer &lt;YOUR_TOKEN_HERE&gt;</code></pre>
               </div>
             </div>
           </section>
+
+          <section id="definition-ScreenerChat" class="definition definition-object" data-traverse-target="definition-ScreenerChat">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">ScreenerChat</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>id</code></span> - <span class="property-type"><a href="#definition-String"><code>String</code></a></span>
+                        </td>
+                        <td>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>chat</code></span> - <span class="property-type"><a href="#definition-String"><code>String</code></a></span>
+                        </td>
+                        <td>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>createdAt</code></span> - <span class="property-type"><a href="#definition-DateTime"><code>DateTime</code></a></span>
+                        </td>
+                        <td>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>updatedAt</code></span> - <span class="property-type"><a href="#definition-DateTime"><code>DateTime</code></a></span>
+                        </td>
+                        <td>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"chat"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"createdAt"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"updatedAt"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-ScreenerChatFilter" class="definition definition-input-object" data-traverse-target="definition-ScreenerChatFilter">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">ScreenerChatFilter</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Input Field</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>startDate</code></span> - <span class="property-type"><a href="#definition-DateTime"><code>DateTime</code></a></span>
+                        </td>
+                        <td>
+                          From Date
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>endDate</code></span> - <span class="property-type"><a href="#definition-DateTime"><code>DateTime</code></a></span>
+                        </td>
+                        <td>
+                          To Date
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>id</code></span> - <span class="property-type"><a href="#definition-String"><code>String</code></a></span>
+                        </td>
+                        <td>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"startDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2024-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"endDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2024-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz123"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-ScreenerChatHistory" class="definition definition-object" data-traverse-target="definition-ScreenerChatHistory">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">ScreenerChatHistory</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Fields</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Field Name</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>total</code></span> - <span class="property-type"><a href="#definition-Int"><code>Int</code></a></span>
+                        </td>
+                        <td>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>screenerChatHistory</code></span> - <span class="property-type"><a href="#definition-ScreenerChat"><code>[ScreenerChat]</code></a></span>
+                        </td>
+                        <td>
+                          List of <a href="#definition-ScreenerChat"><code>ScreenerChat</code></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">"total"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">"screenerChatHistory"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">ScreenerChat</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">}</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="definition-SortDirection" class="definition definition-enum" data-traverse-target="definition-SortDirection">
+            <div class="definition-group-name">
+              <a href="#group-Types">Types</a>
+            </div>
+            <h2 class="definition-heading">SortDirection</h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <div class="definition-properties doc-copy-section">
+                  <h5>Values</h5>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Enum Value</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <p><code>ASC</code></p>
+                        </td>
+                        <td>
+                          oldest dates to most recent
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p><code>DESC</code></p>
+                        </td>
+                        <td>
+                          most recent to oldest dates
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="doc-examples">
+                <div class="example-section example-section-is-code">
+                  <h5>Example</h5>
+                  <html>
+                    <head></head>
+                    <body><pre><code class="hljs language-gql"><span class="hljs-symbol">"ASC"</span>
+</code></pre>
+                    </body>
+                  </html>
+                </div>
+              </div>
+            </div>
+          </section>
           <section id="definition-String" class="definition definition-scalar" data-traverse-target="definition-String">
             <div class="definition-group-name">
               <a href="#group-Types">Types</a>
@@ -668,6 +1041,20 @@ Authorization: Bearer &lt;YOUR_TOKEN_HERE&gt;</code></pre>
                         </td>
                         <td> Assessment name </td>
                       </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>stats</code></span> - <span class="property-type"><a href="#definition-JSON"><code>JSON</code></a></span>
+                        </td>
+                        <td>
+                          Additional Stats
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data-property-name=""><span class="property-name"><code>sessionId</code></span> - <span class="property-type"><a href="#definition-ID"><code>String</code></a></span>
+                        </td>
+                        <td>
+                        </td>
+                      </tr>
+                     
                     </tbody>
                   </table>
                 </div>
@@ -681,7 +1068,9 @@ Authorization: Bearer &lt;YOUR_TOKEN_HERE&gt;</code></pre>
   <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"results"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"savedDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"assessmentName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span>
+  <span class="hljs-attr">"assessmentName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"xyz789"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"stats"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">{}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"sessionId"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"abc123"</span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
                     </body>
@@ -817,6 +1206,14 @@ Authorization: Bearer &lt;YOUR_TOKEN_HERE&gt;</code></pre>
                         </td>
                         <td> To Date </td>
                       </tr>
+                      <tr>
+                        <td>
+                          <span class="property-name"><code>isRequiredStats</code></span> - <span class="property-type"><a href="#definition-Boolean"><code>Boolean</code></a></span>
+                        </td>
+                        <td>
+                          if marked true, return more detailed stats result
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -828,7 +1225,8 @@ Authorization: Bearer &lt;YOUR_TOKEN_HERE&gt;</code></pre>
                     <head></head>
                     <body><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"startDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">"endDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span>
+  <span class="hljs-attr">"endDate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2007-12-03T10:15:30Z"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"isRequiredStats"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span>
 <span class="hljs-punctuation">}</span>
 </code></pre>
                     </body>
